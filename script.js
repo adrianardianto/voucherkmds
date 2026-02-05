@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const usedCodes = await checkResponse.json();
                 
                 if (usedCodes && usedCodes.includes(code)) {
-                    showModal("Sudah Terpakai", "❌ Kode voucher ini SUDAH PERNAH digunakan oleh orang lain.", "⚠️");
+                    showModal("Sudah Terpakai", "❌ Kode voucher ini SUDAH PERNAH digunakan", "⚠️");
                     btn.disabled = false;
                     btn.textContent = "KLAIM VOUCHER";
                     return;
