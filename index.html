@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voucher-kmds</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div id="entryView">
+          <h1>🎉 Cek Voucher kamu disini !</h1>
+          <p class="subtitle">
+            Masukkan kode voucher kamu untuk melihat hadiahnya, semoga beruntung!
+          </p>
+
+          <div class="input-group">
+            <input
+              type="text"
+              id="userName"
+              placeholder="Nama Lengkap"
+              class="input-field"
+              autocomplete="name"
+            />
+            <input
+              type="tel"
+              id="userPhone"
+              placeholder="No. WhatsApp / HP"
+              class="input-field"
+              autocomplete="tel"
+            />
+            <input
+              type="text"
+              id="voucherCode"
+              placeholder="Kode Voucher (Contoh: ABC12345)"
+              autocomplete="off"
+            />
+            <button id="checkBtn">KLAIM VOUCHER</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="customModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-icon" id="modalIcon">⚠️</div>
+            <h2 id="modalTitle">Perhatian</h2>
+            <p id="modalMessage">Pesan goes here</p>
+            <button id="modalBtn">OK</button>
+        </div>
+    </div>
+
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

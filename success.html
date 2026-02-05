@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Berhasil!</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+       
+        <h1 style="font-size: 2rem; margin-bottom: 10px;">Hai.., <span id="userNameDisplay">Sobat</span>! 🎉</h1>
+        <p class="subtitle" style="margin-bottom: 30px;">
+          Voucher mu berhasil di-submit.
+        </p>
+
+        <div id="result" class="result">
+          <div class="content">
+            <span id="emoji">🎁</span>
+            <h2 id="prizeText">Memuat hadiah...</h2>
+          </div>
+          
+          <!-- Bagian Keamanan Tambahan -->
+          <div style="margin-top: 20px; border-top: 1px dashed #ccc; padding-top: 15px; font-size: 0.8rem; color: #666;">
+            <p><strong>Waktu Klaim:</strong> <span id="timestampDisplay">-</span></p>
+            <p><strong>Kode Referensi:</strong> <code id="refDisplay" style="background: #eee; padding: 2px 5px; border-radius: 3px; font-weight: bold;">-</code></p>
+            <p style="font-size: 0.7rem; margin-top: 5px; color: #999;">*Admin akan memvalidasi Kode Referensi ini dengan Database.</p>
+          </div>
+        </div>
+
+
+        <div id="claimInfo" style="margin-top: 20px; display: none; text-align: center;">
+            <p style="color: var(--text-sec); margin-bottom: 15px;">
+                Silakan screenshot halaman ini dan hubungi Admin untuk klaim hadiah:
+            </p>
+            <a href="https://wa.me/62895326392811?text=Halo%20Admin,%20saya%20menang%20voucher!" target="_blank" 
+               style="display: inline-block; background-color: #25D366; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s;">
+               <span style="font-size: 1.2rem; vertical-align: middle; margin-right: 5px;">📱</span> Hubungi via WhatsApp
+            </a>
+        </div>
+
+
+      </div>
+    </div>
+
+    <script>
+      // Ambil data dari Session Storage (Bukan URL lagi)
+      const data = JSON.parse(sessionStorage.getItem('voucherResult'));
+
+      const prizeText = document.getElementById("prizeText");
+      const emoji = document.getElementById("emoji");
+      const nameDisplay = document.getElementById("userNameDisplay");
+      const claimInfo = document.getElementById("claimInfo");
+      const timestampDisplay = document.getElementById("timestampDisplay");
+      const refDisplay = document.getElementById("refDisplay");
+
+      if (data) {
+        // Tampilkan Nama
+        if (data.name) nameDisplay.textContent = data.name;
+        
+        // Tampilkan Metadata Keamanan
+        if (data.date) timestampDisplay.textContent = data.date;
+        if (data.refId) refDisplay.textContent = data.refId;
+
+        // Tampilkan Hadiah
+        const prize = data.prize;
+        prizeText.textContent = prize;
+
+        if (prize.includes("ZONK")) {
+          emoji.textContent = "😢";
+          prizeText.style.color = "var(--error)";
+          claimInfo.style.display = "none";
+        } else {
+          emoji.textContent = "🎉";
+          prizeText.style.color = "var(--success)";
+          claimInfo.style.display = "block";
+        }
+      } else {
+        // Jika tidak ada data di session (user langsung buka link success.html), kembalikan ke home
+        alert("Akses ditolak: Silakan masukkan kode voucher terlebih dahulu.");
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>
